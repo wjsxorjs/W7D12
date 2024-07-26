@@ -77,7 +77,7 @@ public class MemberController {
         return mv;
     }
     
-    @GetMapping("/mem_logout")
+    @GetMapping("/logout")
     public String logout() {
         session.removeAttribute("mvo");
         return "redirect:/";

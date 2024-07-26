@@ -37,8 +37,8 @@
     <hr/>
     <div id="box">
         <c:if test="${sessionScope.mvo ne null}">
-            <a href="/mem_logout">로그아웃</a>
-            <a href="/bbs">게시판</a>
+            <a href="/logout">로그아웃</a>
+            <a href="/bbs?bname=bbs">게시판</a>
         </c:if>
         <c:if test="${sessionScope.mvo eq null}">
             <a href="/login">로그인</a>

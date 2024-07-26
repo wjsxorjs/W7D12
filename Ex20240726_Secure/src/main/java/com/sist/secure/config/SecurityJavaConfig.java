@@ -31,7 +31,14 @@ public class SecurityJavaConfig {
                 .authorizeHttpRequests(
                         authorize -> authorize
                                 .requestMatchers("/**", "/reg", "/login", "/reqLogin").permitAll()
-                                .anyRequest().authenticated());
+                                .anyRequest().authenticated())
+                                .logout(logout -> 
+                                logout
+                                    .logoutUrl("/logout")
+                                    .logoutSuccessUrl("/") // 로그아웃 후 리디렉션할 URL 설정
+                                    .invalidateHttpSession(true)
+                                    .deleteCookies("JSESSIONID")
+                                );
         return http.build();
     }
 
