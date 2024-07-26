@@ -1,12 +1,14 @@
 package com.sist.secure.mapper;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+
 import com.sist.secure.vo.MemVO;
 
+@Mapper
 public interface MemMapper{
 
-    public List<MemVO> login(String m_id);
+    MemVO login(String m_id);
 
-    public int reg(MemVO mvo);
+    int reg(MemVO mvo);
     
 }
