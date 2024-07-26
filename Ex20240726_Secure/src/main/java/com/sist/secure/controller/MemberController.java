@@ -27,7 +27,12 @@ public class MemberController {
     @Autowired
     private MemService m_service;
 
-    @RequestMapping
+    @RequestMapping("/")
+    public String home() {
+        return "index";
+    }
+
+    @RequestMapping("/index")
     public String index() {
         return "index";
     }
@@ -42,10 +47,10 @@ public class MemberController {
         System.out.println("MVO: "+ mvo.getM_id()+" || "+mvo.getM_name());
         
         // Service를 이용하여 회원등록
-        
+        int chk = m_service.reg(mvo);
 
-        ModelAndView mv =new ModelAndView();
-        
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("login");
         return mv;
     }
     
@@ -55,19 +60,28 @@ public class MemberController {
     }
     
     @PostMapping("/reqLogin")
-    public ModelAndView login(MemVO mvo) {
-        System.out.println("MVO: "+ mvo.getM_id()+" || "+mvo.getM_name());
+    public ModelAndView login(MemVO vo) {
+        System.out.println("MVO: "+ vo.getM_id()+" || "+vo.getM_pw());
+        ModelAndView mv =new ModelAndView();
         
         // Service를 이용하여 로그인 인증확인
-        
-
-        ModelAndView mv =new ModelAndView();
-
+        MemVO mvo = m_service.login(vo);
+        if(mvo == null){
+            mv.addObject("status","1");
+            mv.setViewName("login");
+            return mv;
+        }
+        session.setAttribute("mvo", mvo);
         mv.setViewName("redirect:/");
         
         return mv;
     }
-
+    
+    @GetMapping("/mem_logout")
+    public String logout() {
+        session.removeAttribute("mvo");
+        return "redirect:/";
+    }
 
 
 }

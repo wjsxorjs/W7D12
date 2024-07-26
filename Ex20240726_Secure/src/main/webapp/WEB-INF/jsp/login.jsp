@@ -63,8 +63,15 @@
 
     </div>
 
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
+        $(function(){
+            <c:if test="${status eq 1}"> 
+                alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+            </c:if>
+        });
+
         function sendData(ff){
             let mid = $("#m_id").val();
             let mpw = $("#m_pw").val();
