@@ -15,6 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BbsVO {
+    private int rnum;
+    
     private String b_idx, subject, writer, content,
     file_name, ori_name, write_date, ip, hit, bname, status;
 
